@@ -260,12 +260,12 @@ setInterval(()=>{
 /*======================================================
     ABOUT TEXT REVEAL
 ======================================================*/
-gsap.registerPlugin(SplitText, ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
 document.querySelectorAll(".reveal-text").forEach((text) => {
 
-    const split = SplitText.create(text, {
-        type: "chars"
+    const split = new SplitType(text, {
+        types: "chars"
     });
 
     gsap.fromTo(
@@ -294,38 +294,44 @@ document.querySelectorAll(".reveal-text").forEach((text) => {
 });
 
 
-gsap.registerPlugin(SplitText, ScrollTrigger);
+/*======================================================
+    HERO TITLE REVEAL
+======================================================*/
 
 const hero = document.querySelector(".hero-title");
 
-const split = SplitText.create(hero, {
-    type: "lines"
-});
+if (hero) {
 
-gsap.fromTo(
-    split.lines,
-    {
-        rotationX: -90,
-        opacity: 0,
-        y: 80,
-        transformOrigin: "50% 50% -120px"
-    },
-    {
-        rotationX: 0,
-        opacity: 1,
-        y: 0,
-        duration: 1.2,
-        ease: "power4.out",
-        stagger: 0.18,
+    const split = new SplitType(hero, {
+        types: "lines"
+    });
 
-        scrollTrigger: {
-            trigger: hero,
-            start: "top 80%",
-            end: "bottom 35%",
-            scrub: true
+    gsap.fromTo(
+        split.lines,
+        {
+            rotationX: -90,
+            opacity: 0,
+            y: 80,
+            transformOrigin: "50% 50% -120px"
+        },
+        {
+            rotationX: 0,
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            ease: "power4.out",
+            stagger: 0.18,
+
+            scrollTrigger: {
+                trigger: hero,
+                start: "top 80%",
+                end: "bottom 35%",
+                scrub: true
+            }
         }
-    }
-);
+    );
+
+}
 /*======================================================
         MAGNETIC FEATURE CARDS
 ======================================================*/
