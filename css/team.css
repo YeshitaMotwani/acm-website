@@ -431,7 +431,7 @@ a:focus-visible, .linkedin-icon:focus-visible, .contact-btn:focus-visible {
 
 .footer{
     position: relative;
-    padding: 45px 0;
+    padding: 15px 0;
     background: #0b0b0b;
     border-top: 1px solid rgba(255,107,0,.18);
     overflow: hidden;
@@ -458,6 +458,57 @@ a:focus-visible, .linkedin-icon:focus-visible, .contact-btn:focus-visible {
     justify-content:space-between;
     align-items:center;
     gap:40px;
+}
+
+.footer-left{
+    display:flex;
+    align-items:center;
+    gap:22px;
+}
+
+.footer-logo{
+    width:80px;
+    height:80px;
+    object-fit:contain;
+    transition:.35s ease;
+}
+
+.footer-logo:hover{
+    transform:rotate(-8deg) scale(1.05);
+}
+
+.footer-text h2{
+    color:#fff;
+}
+
+.footer-text p{
+    color:#ff6b00;
+    font-size:1.25rem;
+    font-weight:500;
+    margin-top:6px;
+}
+
+.footer-right{
+    color:#8d8d8d;
+    font-size:1rem;
+    text-align:right;
+}
+
+@media(max-width:900px){
+
+.footer-content{
+    flex-direction:column;
+    text-align:center;
+}
+
+.footer-left{
+    flex-direction:column;
+}
+
+.footer-right{
+    text-align:center;
+}
+
 }
 
 .footer-left{
