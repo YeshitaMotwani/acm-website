@@ -162,59 +162,66 @@ document.addEventListener("DOMContentLoaded", () => {
   renderFaculty();
 });
 
-gsap.registerPlugin(ScrollTrigger, ScrambleTextPlugin);
-function revealTeamTitle() {
-    gsap.to("#teamLine1", {
-        duration: 1.4,
-        scrambleText: {
-            text: "The people running",
-            chars: "upperAndLowerCase",
-            revealDelay: 0.15,
-            tweenLength: true
-        },
-        ease: "power2.out"
-    });
+// =====================================================
+// FREE SCRAMBLE TITLES
+// =====================================================
 
-    gsap.to("#teamChapter", {
-        duration: 1.4,
-        delay: 0.15,
-        scrambleText: {
-            text: "chapter",
-            chars: "upperAndLowerCase",
-            revealDelay: 0.15,
-            tweenLength: true
-        },
-        ease: "power2.out"
-    });
-}
+gsap.registerPlugin(ScrollTrigger);
 
-function scrambleTeamTitle() {
-    gsap.to("#teamLine1", {
-        duration: 0.8,
-        scrambleText: {
-            text: "XXXXXXXXXXXXXXXXXXX",
-            chars: "upperAndLowerCase"
+const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+document.querySelectorAll(".scramble-title").forEach((el) => {
+
+    const original = el.textContent.trim();
+    let interval;
+
+    function scramble() {
+
+        clearInterval(interval);
+
+        let iteration = 0;
+
+        interval = setInterval(() => {
+
+            el.textContent = original
+                .split("")
+                .map((letter, index) => {
+
+                    if (letter === " ") return " ";
+
+                    if (index < iteration) return original[index];
+
+                    return chars[Math.floor(Math.random() * chars.length)];
+
+                })
+                .join("");
+
+            iteration += 0.35;
+
+            if (iteration >= original.length) {
+                clearInterval(interval);
+                el.textContent = original;
+            }
+
+        }, 35);
+
+    }
+
+    ScrollTrigger.create({
+        trigger: el,
+        start: "top 80%",
+
+        onEnter: () => {
+            el.textContent = "";
+            scramble();
+        },
+
+        onEnterBack: () => {
+            el.textContent = "";
+            scramble();
         }
     });
 
-    gsap.to("#teamChapter", {
-        duration: 0.8,
-        scrambleText: {
-            text: "XXXXXXXX",
-            chars: "upperAndLowerCase"
-        }
-    });
-}
-ScrollTrigger.create({
-    trigger: ".hero",
-    start: "top 70%",
-    end: "bottom 30%",
-
-    onEnter: revealTeamTitle,
-    onEnterBack: revealTeamTitle,
-
-    onLeave: scrambleTeamTitle,
-    onLeaveBack: scrambleTeamTitle
 });
 gsap.registerPlugin(ScrollTrigger);
 
@@ -232,4 +239,8 @@ gsap.to(teamGrid, {
     end: () => "+=" + (teamGrid.scrollWidth - window.innerWidth+120),
     invalidateOnRefresh: true
   }
+});
+
+window.addEventListener("load", () => {
+    ScrollTrigger.refresh();
 });
