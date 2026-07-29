@@ -1,17 +1,4 @@
-:root {
-  --black: #0A0A0A;
-  --dark-grey: #1A1A1A;
-  --grey: #808080;
-  --white: #FFFFFF;
-  --orange: #FF6B00;
-  --dark-orange: #C94F00;
 
-  --font-display: 'Space Grotesk', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-
-  --wrap: 1180px;
-}
 
 * { box-sizing: border-box; }
 
