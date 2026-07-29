@@ -403,3 +403,18 @@ gsap.utils.toArray(".feature-card").forEach((card)=>{
 
 });
 
+gsap.utils.toArray(".feature-card").forEach((card, i) => {
+    gsap.fromTo(card,
+        { opacity: 0, y: 40, scale: 0.9 },
+        {
+            opacity: 1, y: 0, scale: 1,
+            duration: 0.7,
+            delay: i * 0.12,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: ".feature-grid",
+                start: "top 85%"
+            }
+        }
+    );
+});
