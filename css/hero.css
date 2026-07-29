@@ -5,6 +5,7 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
+  opacity: 1;
   background: var(--black);
   color: var(--white);
   font-family: var(--font-body);
@@ -63,6 +64,17 @@ LOADER
     align-items:center;
 }
 
+.loader-percent{
+    position:absolute;
+    bottom:-60px;
+    left:50%;
+    transform:translateX(-50%);
+    font-family: var(--font-mono);
+    font-size:14px;
+    letter-spacing:2px;
+    color:var(--orange);
+    z-index:5;
+}
 /* Orange Glow */
 
 .loader-bg{

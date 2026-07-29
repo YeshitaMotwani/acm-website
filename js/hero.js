@@ -326,7 +326,17 @@ gsap.set(".hero",{
     opacity:0,
     y:40
 });
+const loaderPercentEl = document.getElementById("loaderPercent");
+const progressObj = { val: 0 };
 const tl = gsap.timeline();
+tl.to(progressObj, {
+    val: 100,
+    duration: 2.6,
+    ease: "power1.inOut",
+    onUpdate: () => {
+        if (loaderPercentEl) loaderPercentEl.textContent = Math.round(progressObj.val) + "%";
+    }
+}, 0);
 
 tl.from(".loader-logo",{
 

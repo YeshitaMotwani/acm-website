@@ -71,3 +71,20 @@ zones.forEach(zone=>{
 
 });
 
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.utils.toArray(".option-card").forEach((card, i) => {
+    gsap.fromTo(card,
+        { opacity: 0, x: i % 2 === 0 ? -60 : 60 },
+        {
+            opacity: 1, x: 0,
+            duration: 0.8,
+            delay: i * 0.15,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: ".options-grid",
+                start: "top 85%"
+            }
+        }
+    );
+});

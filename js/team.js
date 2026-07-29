@@ -244,3 +244,60 @@ gsap.to(teamGrid, {
 window.addEventListener("load", () => {
     ScrollTrigger.refresh();
 });
+
+gsap.utils.toArray(".faculty-card").forEach((card, i) => {
+    gsap.fromTo(card,
+        { opacity: 0, y: 30 },
+        {
+            opacity: 1, y: 0,
+            duration: 0.6,
+            delay: i * 0.1,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".faculty-grid",
+                start: "top 85%"
+            }
+        }
+    );
+});
+gsap.utils.toArray(".contact-btn").forEach((btn, i) => {
+    gsap.fromTo(btn,
+        { opacity: 0, y: 25 },
+        {
+            opacity: 1, y: 0,
+            duration: 0.6,
+            delay: i * 0.15,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".contact-buttons",
+                start: "top 90%"
+            }
+        }
+    );
+
+    btn.addEventListener("mousemove", (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        gsap.to(btn, { x: x * 0.15, y: y * 0.15, duration: 0.4, ease: "power3.out", overwrite: "auto" });
+    });
+
+    btn.addEventListener("mouseleave", () => {
+        gsap.to(btn, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1,0.45)" });
+    });
+});
+
+gsap.utils.toArray(".cta-panel").forEach((panel) => {
+    gsap.fromTo(panel,
+        { opacity: 0, y: 50 },
+        {
+            opacity: 1, y: 0,
+            duration: 0.9,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: panel,
+                start: "top 88%"
+            }
+        }
+    );
+});
