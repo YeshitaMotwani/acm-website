@@ -52,15 +52,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-gsap.registerPlugin(SplitText);
-
 function animateHeroTitle() {
-
     document.querySelectorAll(".animate-word").forEach((text) => {
-
-        const split = SplitText.create(text, {
-            type: "chars",
-            charsClass: "char"
+        const split = new SplitType(text, {
+            types: "chars"
         });
 
         gsap.from(split.chars, {
@@ -75,9 +70,7 @@ function animateHeroTitle() {
                 split.revert();
             }
         });
-
     });
-
 }
 
 
