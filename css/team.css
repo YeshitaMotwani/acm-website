@@ -102,7 +102,7 @@ section {
 .section-title {
   font-family: "Bitcount Prop Single", system-ui;
   font-optical-sizing: auto;
-  font-weight: <weight>;
+  font-weight: 600;
   font-style: normal;
   font-variation-settings:
     "slnt" 0,
