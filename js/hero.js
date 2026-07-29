@@ -253,47 +253,6 @@ if(heroMag){
     });
 
 }
-// =========================
-// Hero Network Pulse
-// =========================
-
-gsap.utils.toArray(".network-node").forEach((node,i)=>{
-
-    gsap.to(node,{
-
-        scale:1.7,
-
-        opacity:.45,
-
-        duration:1.6,
-
-        repeat:-1,
-
-        yoyo:true,
-
-        delay:i*.18,
-
-        ease:"sine.inOut"
-
-    });
-
-});
-
-gsap.utils.toArray(".network-square").forEach((square,i)=>{
-
-    gsap.to(square,{
-
-        rotation:360,
-
-        duration:10+i*2,
-
-        repeat:-1,
-
-        ease:"none"
-
-    });
-
-});
 
 // ======================================
 // HERO MESH ANIMATION
