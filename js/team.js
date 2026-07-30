@@ -374,3 +374,63 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+/* ==========================================================
+   PHASE 6 — LIQUID BUTTON FILL LAYER INJECTION
+========================================================== */
+
+document.querySelectorAll(".contact-btn").forEach((btn) => {
+    const fill = document.createElement("div");
+    fill.className = "liquid-fill";
+    btn.insertBefore(fill, btn.firstChild);
+});
+
+/* ==========================================================
+   PHASE 6 — FOOTER BEAM + PARTICLES
+========================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const footer = document.querySelector(".footer");
+    if (!footer) return;
+
+    const beam = document.createElement("div");
+    beam.className = "footer-beam";
+    footer.appendChild(beam);
+
+    if (window.gsap) {
+        gsap.to(beam, {
+            left: "100%",
+            duration: 4.5,
+            repeat: -1,
+            ease: "power1.inOut"
+        });
+    }
+
+    const particleLayer = document.createElement("div");
+    particleLayer.className = "footer-particles";
+    footer.appendChild(particleLayer);
+
+    const particleCount = 20;
+
+    for (let i = 0; i < particleCount; i++) {
+        const p = document.createElement("span");
+        p.className = "footer-particle";
+        p.style.left = Math.random() * 100 + "%";
+        p.style.top = Math.random() * 100 + "%";
+        particleLayer.appendChild(p);
+
+        if (window.gsap) {
+            gsap.to(p, {
+                y: -20 - Math.random() * 20,
+                opacity: 0.5,
+                duration: 2 + Math.random() * 2,
+                repeat: -1,
+                yoyo: true,
+                delay: Math.random() * 2,
+                ease: "sine.inOut"
+            });
+        }
+    }
+
+});
