@@ -1,0 +1,146 @@
+/* ==========================================================
+   PREMIUM CURSOR
+========================================================== */
+
+.cursor-dot,
+.cursor-ring{
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 99998;
+    transform: translate(-50%, -50%);
+    will-change: transform;
+}
+
+.cursor-dot{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--orange);
+    box-shadow: 0 0 10px rgba(255,107,0,0.8);
+}
+
+.cursor-ring{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,107,0,0.5);
+    transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.cursor-ring.is-hovering{
+    width: 64px;
+    height: 64px;
+    background: rgba(255,107,0,0.08);
+    border-color: var(--orange);
+}
+
+.cursor-ring.is-clicking{
+    width: 34px;
+    height: 34px;
+}
+
+.cursor-ripple{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1.5px solid var(--orange);
+    pointer-events: none;
+    z-index: 99997;
+    transform: translate(-50%, -50%);
+    opacity: 0.8;
+}
+
+@media (hover: none), (max-width: 860px){
+    .cursor-dot, .cursor-ring{ display: none; }
+}
+
+body.custom-cursor-active, body.custom-cursor-active a, body.custom-cursor-active button{
+    cursor: none;
+}
+
+/* ==========================================================
+   3D CARD TILT + GLARE
+========================================================== */
+
+.tilt-card{
+    position: relative;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.tilt-glare{
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(circle at var(--glare-x,50%) var(--glare-y,50%), rgba(255,255,255,0.18), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 5;
+}
+
+.tilt-card:hover .tilt-glare{
+    opacity: 1;
+}
+
+/* ==========================================================
+   ANIMATED BEAM BORDERS
+========================================================== */
+
+.beam-border{
+    position: relative;
+    overflow: hidden;
+}
+
+.beam-border::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: conic-gradient(from var(--beam-angle,0deg), transparent 0%, var(--orange) 8%, transparent 18%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: 4;
+    animation: beamRotate 3.2s linear infinite;
+}
+
+@keyframes beamRotate{
+    to{ --beam-angle: 360deg; }
+}
+
+@property --beam-angle{
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+}
+
+/* ==========================================================
+   SPOTLIGHT EFFECT
+========================================================== */
+
+.spotlight-zone{
+    position: relative;
+}
+
+.spotlight-zone::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(circle 220px at var(--spot-x,50%) var(--spot-y,50%), rgba(255,107,0,0.12), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 3;
+}
+
+.spotlight-zone:hover::after{
+    opacity: 1;
+}
