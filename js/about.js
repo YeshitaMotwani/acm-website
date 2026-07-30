@@ -418,3 +418,90 @@ gsap.utils.toArray(".feature-card").forEach((card, i) => {
         }
     );
 });
+
+/* ==========================================================
+   PHASE 3 — FLOATING PARTICLES INSIDE FEATURE CARDS
+========================================================== */
+
+document.querySelectorAll(".feature-card").forEach((card) => {
+
+    const noise = document.createElement("div");
+    noise.className = "card-noise";
+    card.appendChild(noise);
+
+    const particleLayer = document.createElement("div");
+    particleLayer.className = "card-particles";
+    card.appendChild(particleLayer);
+
+    const particleCount = 6;
+    const particles = [];
+
+    for (let i = 0; i < particleCount; i++) {
+        const p = document.createElement("span");
+        p.className = "card-particle";
+        p.style.left = Math.random() * 100 + "%";
+        p.style.top = Math.random() * 100 + "%";
+        particleLayer.appendChild(p);
+        particles.push(p);
+    }
+
+    card.addEventListener("mouseenter", () => {
+        if (!window.gsap) return;
+        particles.forEach((p) => {
+            gsap.to(p, {
+                opacity: 0.7,
+                y: -30 - Math.random() * 20,
+                x: (Math.random() - 0.5) * 30,
+                duration: 1.4 + Math.random(),
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                overwrite: "auto"
+            });
+        });
+    });
+
+    card.addEventListener("mouseleave", () => {
+        if (!window.gsap) return;
+        particles.forEach((p) => {
+            gsap.to(p, { opacity: 0, duration: 0.5, overwrite: "auto" });
+            gsap.killTweensOf(p);
+        });
+    });
+
+});
+
+/* ==========================================================
+   PHASE 3 — SCROLL MORPH TRANSITION (About -> Events)
+========================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const aboutSection = document.querySelector(".about");
+    const eventsSection = document.querySelector(".events");
+
+    if (!aboutSection || !eventsSection || !window.gsap) return;
+
+    const divider = document.createElement("div");
+    divider.className = "morph-divider";
+    aboutSection.after(divider);
+
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: divider,
+            start: "top 90%",
+            end: "top 40%",
+            scrub: true
+        }
+    })
+    .to(divider, {
+        width: "60%",
+        ease: "none"
+    })
+    .to(aboutSection, {
+        opacity: 0.4,
+        scale: 0.98,
+        ease: "none"
+    }, "<");
+
+});
