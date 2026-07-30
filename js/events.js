@@ -5,8 +5,8 @@
 
 const zones = document.querySelectorAll(".mag-zone");
 
-const strength = 0.35;
-const labelStrength = 0.18;
+const eventsMagStrength = 0.35;
+const eventsLabelStrength = 0.18;
 
 zones.forEach(zone=>{
 
@@ -34,16 +34,16 @@ zones.forEach(zone=>{
         );
 
         gsap.to(btn,{
-            x:x*strength,
-            y:y*strength,
+            x:x*eventsMagStrength,
+            y:y*eventsMagStrength,
             duration:.35,
             ease:"power3.out",
             overwrite:"auto"
         });
 
         gsap.to(label,{
-            x:x*labelStrength,
-            y:y*labelStrength,
+            x:x*eventsLabelStrength,
+            y:y*eventsLabelStrength,
             duration:.35,
             ease:"power3.out",
             overwrite:"auto"
