@@ -207,3 +207,111 @@ body.custom-cursor-active, body.custom-cursor-active a, body.custom-cursor-activ
     background: var(--orange);
     box-shadow: 0 0 20px rgba(255,107,0,0.6);
 }
+
+/* ==========================================================
+   PHASE 4 — OPTION CARD HOVER UPGRADE
+========================================================== */
+
+.option-card{
+    overflow: hidden;
+}
+
+.option-card .option-glow-layer{
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(255,107,0,0.14), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.6s ease;
+    transform: scale(0.9) rotate(0deg);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.option-card:hover .option-glow-layer{
+    opacity: 1;
+    transform: scale(1.1) rotate(6deg);
+}
+
+.option-card h2{
+    transition: transform 0.35s ease;
+}
+
+.option-card:hover h2{
+    transform: translateY(-4px);
+}
+
+/* ==========================================================
+   PHASE 4 — EVENT VISUAL HOVER (zoom + rotate)
+========================================================== */
+
+.event-visual{
+    overflow: hidden;
+    transition: transform 0.5s ease;
+}
+
+.event-showcase-grid:hover .event-visual{
+    transform: scale(1.03) rotate(-0.6deg);
+}
+
+/* ==========================================================
+   PHASE 4 — EMPTY STATE HOLOGRAM
+========================================================== */
+
+.hologram-scan{
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    z-index: 3;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--orange);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.9;
+}
+
+.hologram-dots{
+    display: inline-flex;
+    gap: 3px;
+}
+
+.hologram-dots span{
+    width: 4px;
+    height: 4px;
+    border-radius: 1px;
+    background: var(--orange);
+    opacity: 0.3;
+}
+
+.event-visual::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(255,107,0,0.04) 0px,
+        rgba(255,107,0,0.04) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    pointer-events: none;
+    animation: scanlineDrift 6s linear infinite;
+}
+
+@keyframes scanlineDrift{
+    from{ background-position-y: 0; }
+    to{ background-position-y: 120px; }
+}
+
+.event-visual .scan-beam{
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--orange), transparent);
+    box-shadow: 0 0 12px rgba(255,107,0,0.7);
+    top: 0;
+    opacity: 0.8;
+}
