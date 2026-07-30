@@ -1045,3 +1045,30 @@ a:focus-visible, button:focus-visible {
 
 }
 
+
+/* ==========================================================
+   PHASE 2 — NEURAL PULSES
+========================================================== */
+
+.neural-pulse{
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--orange);
+    box-shadow: 0 0 8px rgba(255,107,0,0.9), 0 0 16px rgba(255,107,0,0.5);
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* ==========================================================
+   PHASE 2 — HERO PARALLAX LAYER
+========================================================== */
+
+.hero-inner{
+    will-change: transform;
+}
+
+.hero-visual{
+    will-change: transform;
+}
