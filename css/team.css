@@ -548,3 +548,97 @@ a:focus-visible, .linkedin-icon:focus-visible, .contact-btn:focus-visible {
 }
 
 }
+
+/* ==========================================================
+   PHASE 5 — TEAM CARD HOVER UPGRADE
+========================================================== */
+
+.team-card{
+    perspective: 900px;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.avatar{
+    overflow: hidden;
+}
+
+.avatar img{
+    transition: transform 0.5s ease;
+}
+
+.team-card:hover .avatar img{
+    transform: scale(1.12);
+}
+
+.team-card .member-name{
+    transition: transform 0.35s ease, color 0.35s ease;
+}
+
+.team-card:hover .member-name{
+    transform: translateY(-4px);
+    color: var(--orange);
+}
+
+.team-card::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(circle at 50% 0%, rgba(255,107,0,0.10), transparent 65%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.team-card:hover::after{
+    opacity: 1;
+}
+
+.team-card > *{
+    position: relative;
+    z-index: 1;
+}
+
+/* subtle overlap effect while scrolling horizontally */
+.team-card{
+    margin-right: -18px;
+    transition: margin-right 0.3s ease;
+}
+
+.team-card:hover{
+    margin-right: 0px;
+    z-index: 5;
+}
+
+/* ==========================================================
+   PHASE 5 — FACULTY TIMELINE REVEAL
+========================================================== */
+
+.faculty-grid{
+    position: relative;
+}
+
+.faculty-card{
+    opacity: 0;
+    transform: translateX(-40px);
+}
+
+.faculty-card::before{
+    content: "";
+    position: absolute;
+    left: -14px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--orange);
+    box-shadow: 0 0 8px rgba(255,107,0,0.7);
+    transform: translateY(-50%) scale(0);
+    transition: transform 0.4s ease 0.3s;
+}
+
+.faculty-card.timeline-in::before{
+    transform: translateY(-50%) scale(1);
+}

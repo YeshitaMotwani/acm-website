@@ -301,3 +301,76 @@ gsap.utils.toArray(".cta-panel").forEach((panel) => {
         }
     );
 });
+/* ==========================================================
+   PHASE 5 — TEAM CARD 3D TILT (individual, lighter than Phase 1)
+========================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    if (window.matchMedia("(hover: none)").matches) return;
+
+    document.querySelectorAll(".team-card").forEach((card) => {
+
+        card.addEventListener("mousemove", (e) => {
+            const rect = card.getBoundingClientRect();
+            const px = (e.clientX - rect.left) / rect.width;
+            const py = (e.clientY - rect.top) / rect.height;
+
+            const tiltX = (py - 0.5) * -10;
+            const tiltY = (px - 0.5) * 10;
+
+            if (window.gsap) {
+                gsap.to(card, {
+                    rotationX: tiltX,
+                    rotationY: tiltY,
+                    duration: 0.35,
+                    ease: "power2.out",
+                    transformPerspective: 700
+                });
+            }
+        });
+
+        card.addEventListener("mouseleave", () => {
+            if (window.gsap) {
+                gsap.to(card, {
+                    rotationX: 0,
+                    rotationY: 0,
+                    duration: 0.6,
+                    ease: "elastic.out(1,0.5)"
+                });
+            }
+        });
+
+    });
+
+});
+
+/* ==========================================================
+   PHASE 5 — FACULTY TIMELINE SCROLL REVEAL
+========================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    if (!window.gsap) return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    const facultyCards = document.querySelectorAll(".faculty-card");
+
+    facultyCards.forEach((card, i) => {
+        ScrollTrigger.create({
+            trigger: ".faculty-grid",
+            start: "top 82%",
+            onEnter: () => {
+                card.classList.add("timeline-in");
+                gsap.to(card, {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.6,
+                    delay: i * 0.18,
+                    ease: "power3.out"
+                });
+            }
+        });
+    });
+
+});
