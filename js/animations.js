@@ -43,3 +43,47 @@ document.querySelectorAll(".split-reveal").forEach((heading) => {
     }
 
 });
+/* ==========================================================
+   PHASE 7 — BACKGROUND NOISE + FAR PARTICLES
+========================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const bgField = document.querySelector(".bg-field");
+    if (!bgField) return;
+
+    const noise = document.createElement("div");
+    noise.className = "bg-noise";
+    bgField.appendChild(noise);
+
+    const particleLayer = document.createElement("div");
+    particleLayer.className = "bg-particle-layer";
+    bgField.appendChild(particleLayer);
+
+    const count = 25;
+
+    for (let i = 0; i < count; i++) {
+        const p = document.createElement("span");
+        p.className = "bg-far-particle";
+        const size = Math.random() * 2 + 1;
+        p.style.width = size + "px";
+        p.style.height = size + "px";
+        p.style.left = Math.random() * 100 + "%";
+        p.style.top = Math.random() * 100 + "%";
+        particleLayer.appendChild(p);
+
+        if (window.gsap) {
+            gsap.to(p, {
+                y: -40 - Math.random() * 60,
+                x: (Math.random() - 0.5) * 40,
+                opacity: 0.05 + Math.random() * 0.15,
+                duration: 8 + Math.random() * 10,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                delay: Math.random() * 5
+            });
+        }
+    }
+
+});
